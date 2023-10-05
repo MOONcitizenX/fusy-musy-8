@@ -10,7 +10,11 @@ const inputRef = ref(null)
 
 const getDebouncedSearch = useDebounce(jokeStore.getJokes, 500)
 
-onMounted(() => inputRef.value.focus())
+onMounted(() =>
+  setTimeout(() => {
+    inputRef.value.focus()
+  }, 0)
+)
 
 console.log(jokeStore.noData)
 </script>
@@ -19,7 +23,7 @@ console.log(jokeStore.noData)
   <div class="search-wrapper">
     <label class="main-search-label">
       <input
-        ref="inputRef"
+        :ref="inputRef"
         type="text"
         v-model.trim="jokeStore.searchInput"
         @input="getDebouncedSearch"
