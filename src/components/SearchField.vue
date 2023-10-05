@@ -11,23 +11,27 @@ const inputRef = ref(null)
 const getDebouncedSearch = useDebounce(jokeStore.getJokes, 500)
 
 onMounted(() => inputRef.value.focus())
+
+console.log(jokeStore.noData)
 </script>
 
 <template>
   <div class="search-wrapper">
-    <input
-      ref="inputRef"
-      type="text"
-      v-model.trim="jokeStore.searchInput"
-      @input="getDebouncedSearch"
-      class="main-search"
-      placeholder="Search jokes..."
-      tabindex="0"
-      autofocus
-    />
+    <label class="main-search-label">
+      <input
+        ref="inputRef"
+        type="text"
+        v-model.trim="jokeStore.searchInput"
+        @input="getDebouncedSearch"
+        class="main-search"
+        placeholder="Search jokes..."
+        tabindex="0"
+        autofocus
+      />
+    </label>
     <TypographyComponent
       class="search-message"
-      v-if="jokeStore.error"
+      v-if="jokeStore.error && jokeStore.searchInput"
       size="md"
       color="error"
       weight="normal"
@@ -44,6 +48,16 @@ onMounted(() => inputRef.value.focus())
       family="mont"
     >
       Found jokes: {{ jokeStore.totalJokesCount }}
+    </TypographyComponent>
+    <TypographyComponent
+      class="search-message"
+      v-if="jokeStore.noData && !jokeStore.error && !jokeStore.totalJokesCount"
+      size="md"
+      color="dark"
+      weight="normal"
+      family="mont"
+    >
+      No jokes found
     </TypographyComponent>
     <TypographyComponent
       class="search-message"
@@ -96,6 +110,10 @@ onMounted(() => inputRef.value.focus())
     padding-left: 36px;
   }
 }
+.main-search-label {
+  width: 100%;
+  box-shadow: $shadow;
+}
 .main-search {
   width: 100%;
 
@@ -121,7 +139,6 @@ onMounted(() => inputRef.value.focus())
   border: none;
   outline: none;
 
-  box-shadow: $shadow;
   background-color: $white;
 
   &::placeholder {

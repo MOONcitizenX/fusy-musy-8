@@ -8,6 +8,8 @@ export const useJokeStore = defineStore('counter', () => {
 
   const searchInput = ref('')
 
+  const noData = ref(false)
+
   const jokes = ref([])
   const isLoading = ref(false)
   const error = ref(null)
@@ -35,6 +37,7 @@ export const useJokeStore = defineStore('counter', () => {
     isLoading.value = true
     error.value = null
     loadedJokesCount.value = 0
+    noData.value = false
   }
 
   const getJokes = async () => {
@@ -51,8 +54,15 @@ export const useJokeStore = defineStore('counter', () => {
       const data = await res.json()
 
       jokes.value = data?.result
+
+      if (!data?.result?.length) {
+        noData.value = true
+      }
+
       if (data?.result.length > pageSize) {
         loadedJokesCount.value = pageSize
+      } else {
+        loadedJokesCount.value = data?.result?.length + 1
       }
     } catch (error) {
       console.log(error)
@@ -71,6 +81,7 @@ export const useJokeStore = defineStore('counter', () => {
     totalJokesCount,
     getJokes,
     loadMore,
-    canLoadMore
+    canLoadMore,
+    noData
   }
 })
