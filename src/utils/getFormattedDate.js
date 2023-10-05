@@ -1,5 +1,5 @@
-export default function (dateString) {
-  const date = new Date(dateString)
+import moment from 'moment'
 
-  return new Intl.DateTimeFormat('en-GB').format(date).replaceAll('/', '.')
+export default function (date) {
+  return moment(new Date(date)).format('DD.MM.YYYY')
 }

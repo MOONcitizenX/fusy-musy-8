@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.0.13",
     "@fontsource/fira-sans": "^5.0.14",
+    "moment": "^2.29.4",
     "node-sass": "^9.0.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
