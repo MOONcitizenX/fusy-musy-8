@@ -10,6 +10,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fontsource-variable/montserrat": "^5.0.13",
+    "@fontsource/fira-sans": "^5.0.14",
+    "node-sass": "^9.0.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
@@ -21,6 +24,8 @@
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
     "prettier": "^3.0.3",
+    "sass": "^1.68.0",
+    "sass-loader": "^13.3.2",
     "vite": "^4.4.9"
   }
 }

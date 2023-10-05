@@ -1,4 +1,8 @@
-import './assets/main.css'
+import '@fontsource/fira-sans/400.css'
+import '@fontsource/fira-sans/700.css'
+import '@fontsource-variable/montserrat'
+
+import '@/assets/styles/index.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
