@@ -7,16 +7,16 @@ defineProps(['joke', 'index'])
 </script>
 
 <template>
-  <a class="joke-card" :href="joke.url" target="_blank" tabindex="0">
+  <a class="joke-card" :href="joke?.url" target="_blank" tabindex="0">
     <TypographyComponent :size="index > 1 ? 'md' : 'lg'" color="dark" weight="normal" family="fira">
-      {{ joke.value }}
+      {{ joke?.value }}
     </TypographyComponent>
     <div class="card-info">
       <TypographyComponent size="sm" color="gray" weight="normal" family="mont">
-        {{ joke.id }}
+        {{ joke?.id }}
       </TypographyComponent>
       <TypographyComponent size="sm" color="gray" weight="normal" family="mont">
-        {{ getFormattedDate(joke.created_at) }}
+        {{ getFormattedDate(joke?.created_at) }}
       </TypographyComponent>
     </div>
   </a>

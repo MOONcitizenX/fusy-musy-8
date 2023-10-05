@@ -10,7 +10,7 @@ defineProps(['jokes'])
 
 <template>
   <div class="jokes-wrapper">
-    <JokeCard v-for="(joke, index) in jokes" :key="joke.id" :joke="joke" :index="index" />
+    <JokeCard v-for="(joke, index) in jokes" :key="joke?.id" :joke="joke" :index="index" />
   </div>
   <button
     v-if="jokeStore.canLoadMore"
