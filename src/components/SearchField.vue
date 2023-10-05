@@ -1,16 +1,22 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import TypographyComponent from '@/components/shared/TypographyComponent.vue'
 import useDebounce from '@/utils/useDebounce'
 import { useJokeStore } from '@/stores/jokeStore'
 
 const jokeStore = useJokeStore()
 
+const inputRef = ref(null)
+
 const getDebouncedSearch = useDebounce(jokeStore.getJokes, 500)
+
+onMounted(() => inputRef.value.focus())
 </script>
 
 <template>
   <div class="search-wrapper">
     <input
+      ref="inputRef"
       type="text"
       v-model.trim="jokeStore.searchInput"
       @input="getDebouncedSearch"
